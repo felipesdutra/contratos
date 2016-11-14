@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="../../template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<h:form id="frmPesquisa">
+			<h:panelGrid columns="2" style="width:100%">
+
+				<p:growl id="growl" showDetail="true" />
+				<h:panelGrid id="msg" columns="1"
+					style="width:100%;text-align:center">
+					<h:outputLabel value="#{pesquisaMB.mensagem}" />
+				</h:panelGrid>
+			</h:panelGrid>
+			<p:panel header="Pesquisar Processos"
+				style="width:550px;margin-left:auto; margin-right:auto;">
+
+				<h:panelGrid columns="3" id="cad">
+
+					<h:outputLabel for="processo" value="Processo" />
+					<p:inputMask id="processo"
+						value="#{pesquisaMB.processo}" label="Processo">
+					</p:inputMask>
+					<p:message for="processo" />
+					
+					<h:outputLabel for="documento" value="Documento" />
+					<p:inputMask id="documento"
+						value="#{pesquisaMB.documento}" label="Documento">
+					</p:inputMask>
+					<p:message for="documento" />
+					
+					<h:outputLabel for="contrato" value="Contrato N°" />
+					<p:inputMask id="contrato"
+						value="#{pesquisaMB.contrato}" label="Contrato N°">
+					</p:inputMask>
+					<p:message for="contrato" />
+
+				</h:panelGrid>
+
+			</p:panel>
+
+			<h:panelGrid id="operacoes"
+				style="width:100%; height:100%;text-align:center" columns="1">
+				<p:commandButton value="Pesquisar" type="submit"
+					action="#{pesquisaMB.consultar}" update="listagem"
+					ajax="false" />
+			</h:panelGrid>
+
+			<p:dataTable style="width:100%;margin-left:auto; margin-right:auto;"
+				id="listagem" var="s" value="#{pesquisaMB.lista}"
+				emptyMessage="Nenhum registro encontrado.">			
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Processo" />
+					</f:facet>
+					<h:outputText value="#{s.processo}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Documento" />
+					</f:facet>
+					<h:outputText value="#{s.documento}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Data de assinatura" />
+					</f:facet>
+					<h:outputText value="#{s.datadeassinatura}">
+						<f:convertDateTime dateStyle="date" pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>						
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Publicação DOE" />
+					</f:facet>
+					<h:outputText value="#{s.publicacaodoe}">
+						<f:convertDateTime dateStyle="date" pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>	
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Contrato N°" />
+					</f:facet>
+					<h:outputText value="#{s.contrato}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Postos" />
+					</f:facet>
+					<h:outputText value="#{s.postos}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Dados da Licitação" />
+					</f:facet>
+					<h:outputText value="#{s.dadoslicitacao}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Fim do Período" />
+					</f:facet>
+					<h:outputText value="#{s.fimperiodo}">
+						<f:convertDateTime dateStyle="date" pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>	
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Vencimento" />
+					</f:facet>
+					<h:outputText value="#{s.vencimento}">
+						<f:convertDateTime dateStyle="date" pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>	
+								
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Valor Contratual Mensal R$" />
+					</f:facet>
+					<h:outputText value="#{s.valorcontratualmensal}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Projeto" />
+					</f:facet>
+					<h:outputText value="#{s.projeto}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Recurso" />
+					</f:facet>
+					<h:outputText value="#{s.recurso}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Seguro" />
+					</f:facet>
+					<h:outputText value="#{s.seguro}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Responsável" />
+					</f:facet>
+					<h:outputText value="#{s.responsavel}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="E-mail" />
+					</f:facet>
+					<h:outputText value="#{s.email}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{s.nome}" />
+				</p:column>
+						
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+
+
+
+

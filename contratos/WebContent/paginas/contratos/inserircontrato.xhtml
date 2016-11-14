@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="../../template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<h:form id="frmContratos">
+			<h:panelGrid columns="2" style="width:100%">
+
+				<p:growl id="growl" showDetail="true" />
+				<h:panelGrid columns="1" style="width:100%;text-align:center">
+					<h:outputLabel value="#{contratosMB.mensagem}" />
+				</h:panelGrid>
+			</h:panelGrid>
+
+			<p:panel header="Cadastro de Contratos"
+				style="width:550px;margin:2% 25% 1% 25%;">
+				<h:panelGrid columns="3" id="cad">
+
+					<h:outputLabel for="processo" value="Processo" />
+					<p:inputText id="processo"
+						value="#{contratosMB.contratos.processo}" label="processo"
+						required="true" maxlength="300">
+					</p:inputText>
+					<p:message for="processo" />
+
+					<h:outputLabel for="documento" value="Documento" />
+					<p:inputText id="documento"
+						value="#{contratosMB.contratos.documento}" label="documento">
+					</p:inputText>
+					<p:message for="documento" />
+
+					<h:outputLabel for="datadeassinatura" value="Data Assinatura" />
+					<p:inputMask id="datadeassinatura"
+						value="#{contratosMB.contratos.datadeassinatura}"
+						label="datadeassinatura" mask="99/99/9999">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputMask>
+					<p:message for="datadeassinatura" />
+					
+					<h:outputLabel for="publicacaodoe" value="Publicação Doe" />
+					<p:inputMask id="publicacaodoe"
+						value="#{contratosMB.contratos.publicacaodoe}"
+						label="publicacaodoe" mask="99/99/9999">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputMask>
+					<p:message for="publicacaodoe" />
+					
+					<h:outputLabel for="contrato" value="Número do Contrato" />
+					<p:inputText id="contrato"
+						value="#{contratosMB.contratos.contrato}" label="contrato">
+					</p:inputText>
+					<p:message for="contrato" />
+					
+					<h:outputLabel for="postos" value="Postos" />
+					<p:inputText id="postos"
+						value="#{contratosMB.contratos.postos}" label="postos">
+					</p:inputText>
+					<p:message for="postos" />
+					
+					<h:outputLabel for="responsavel" value="Responsável" />
+					<p:inputText id="responsavel"
+						value="#{contratosMB.contratos.responsavel}" label="responsavel">
+					</p:inputText>
+					<p:message for="responsavel" />
+					
+					<h:outputLabel for="email" value="E-mail Empregador" />
+					<p:inputText id="email"
+						value="#{contratosMB.contratos.email}" label="email">
+					</p:inputText>
+					<p:message for="email" />
+					
+					<h:outputLabel for="dadoslicitacao" value="Dados Licitação" />
+					<p:inputText id="dadoslicitacao"
+						value="#{contratosMB.contratos.dadoslicitacao}" label="dadoslicitacao">
+					</p:inputText>
+					<p:message for="dadoslicitacao" />
+					
+					<h:outputLabel for="vencimento" value="Prazo" />
+					<p:inputMask id="vencimento"
+						value="#{contratosMB.contratos.vencimento}"
+						label="vencimento" mask="99/99/9999">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputMask>
+					<p:message for="vencimento" />
+					
+					<h:outputLabel for="fimperiodo" value="Fim período" />
+					<p:inputMask id="fimperiodo"
+						value="#{contratosMB.contratos.fimperiodo}"
+						label="fimperiodo" mask="99/99/9999">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputMask>
+					<p:message for="fimperiodo" />
+					
+					<h:outputLabel for="datapagnf" value="Data pagamento nota fiscal" />
+					<p:inputMask id="datapagnf"
+						value="#{contratosMB.contratos.datapagnf}"
+						label="datapagnf" mask="99/99/9999">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputMask>
+					<p:message for="datapagnf" />
+					
+					<h:outputLabel for="obs" value="Observações" />
+					<p:inputText id="obs"
+						value="#{contratosMB.contratos.obs}" label="obs">
+					</p:inputText>
+					<p:message for="obs" />
+
+				</h:panelGrid>
+			</p:panel>
+
+			<h:panelGrid columns="3" id="operacoes" style="margin:2% 25% 1% 25%;">
+				<p:commandButton value="Salvar" type="submit"
+					action="#{contratosMB.incluir}" update="frmContratos" ajax="false" />
+			</h:panelGrid>
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>
+
+
+
+
+

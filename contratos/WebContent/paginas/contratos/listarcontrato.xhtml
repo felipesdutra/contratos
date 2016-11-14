@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="../../template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<h:form prependId="false" id="form">
+
+			<p:growl id="messages" showDetail="true" />
+
+			<p:dataTable id="dataTable" var="con" value="#{contratosMB.lista}"
+				style="width:1024px;" editable="true" paginator="true" rows="15" 
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="10,15,20"
+				scrollable="true" scrollWidth="1900">
+				<f:facet name="header">  
+		           Listar Contratos 
+		        </f:facet>
+
+				<p:ajax event="rowEdit" listener="#{contratosMB.onEdit}"
+					update=":form:messages" />
+				<p:ajax event="rowEditCancel" listener="#{contratosMB.onCancel}"
+					update=":form:messages" />
+
+				<p:column style="width:10%">
+					<f:facet name="header">
+						<h:outputText value="Processo" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.processo}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.processo}" style="width:96%"
+								label="processo" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:9%">
+					<f:facet name="header">
+						<h:outputText value="Documento" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.documento}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.documento}" style="width:96%"
+								label="documento" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Data de assinatura" style="width:8%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.datadeassinatura}">
+								<f:convertDateTime dateStyle="date" pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputMask value="#{con.datadeassinatura}" style="width:96%"
+								mask="99/99/9999" label="datadeassinatura">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:inputMask>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Publicação Doe" style="width:6%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.publicacaodoe}">
+								<f:convertDateTime dateStyle="date" pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputMask value="#{con.publicacaodoe}" style="width:96%"
+								mask="99/99/9999" label="publicacaodoe">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:inputMask>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:6%">
+					<f:facet name="header">
+						<h:outputText value="Número do Contrato" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.contrato}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.contrato}" 
+								style="width:96%" label="contrato" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:6%">
+					<f:facet name="header">
+						<h:outputText value="Postos" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.postos}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.postos}" 
+								style="width:96%" label="postos" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:8%">
+					<f:facet name="header">
+						<h:outputText value="Dados Licitação" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.dadoslicitacao}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.dadoslicitacao}" 
+								style="width:96%" label="dadoslicitacao" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Prazo" style="width:6%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.vencimento}">
+								<f:convertDateTime dateStyle="date" pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputMask value="#{con.vencimento}" style="width:96%"
+								mask="99/99/9999" label="vencimento">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:inputMask>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Fim período" style="width:6%">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.fimperiodo}">
+								<f:convertDateTime dateStyle="date" pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputMask value="#{con.fimperiodo}" style="width:96%"
+								mask="99/99/9999" label="fimperiodo">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:inputMask>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column style="width:6%">
+					<f:facet name="header">
+						<h:outputText value="Data pagamento nota fiscal" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.datapagnf}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.datapagnf}" 
+								style="width:96%" label="datapagnf" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>				
+				
+				<p:column style="width:6%">
+					<f:facet name="header">
+						<h:outputText value="Valor contratual mensal" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.valorcontratualmensal}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.valorcontratualmensal}" 
+								style="width:96%" label="valorcontratualmensal" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:6%">
+					<f:facet name="header">
+						<h:outputText value="Projeto" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.projeto}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.projeto}" 
+								style="width:96%" label="projeto" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:6%">
+					<f:facet name="header">
+						<h:outputText value="Recurso" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.recurso}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.recurso}" 
+								style="width:96%" label="recurso" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:6%">
+					<f:facet name="header">
+						<h:outputText value="Seguro" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.seguro}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.seguro}" 
+								style="width:96%" label="seguro" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:8%">
+					<f:facet name="header">
+						<h:outputText value="Responsável" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.responsavel}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.responsavel}" 
+								style="width:96%" label="responsavel" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:6%">
+					<f:facet name="header">
+						<h:outputText value="E-mail Empregador" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.email}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.email}"  style="width:96%"
+								label="email" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:6%">
+					<f:facet name="header">
+						<h:outputText value="Telefone" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.telefone}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.telefone}" 
+								style="width:96%" label="telefone" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:6%">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.nome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.nome}" style="width:96%"
+								label="nome" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column style="width:6%">
+					<f:facet name="header">
+						<h:outputText value="Observações" />
+					</f:facet>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{con.obs}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{con.obs}" 
+								style="width:96%" label="obs" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+	
+					<p:column style="width:6%">
+						<p:rowEditor />
+					</p:column>
+				
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+
+
+
+

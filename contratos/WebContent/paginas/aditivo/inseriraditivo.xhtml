@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="../../template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<h:form id="frmContratos">
+			<h:panelGrid columns="2" style="width:100%">
+
+				<p:growl id="growl" showDetail="true" />
+				<h:panelGrid columns="1" style="width:100%;text-align:center">
+					<h:outputLabel value="#{aditivoMB.mensagem}" />
+				</h:panelGrid>
+			</h:panelGrid>
+
+			<p:panel header="Cadastro de Aditivos"
+				style="width:550px;margin:2% 25% 1% 25%;">
+				<h:panelGrid columns="3" id="adi">
+
+					<h:outputLabel for="tipo" value="Tipo" />
+					<p:inputText id="tipo"
+						value="#{aditivoMB.aditivo.tipo}" label="tipo"
+						maxlength="300">
+					</p:inputText>
+					<p:message for="tipo" />
+
+					<h:outputLabel for="numero" value="Número" />
+					<p:inputText id="numero"
+						value="#{aditivoMB.aditivo.numero}" label="numero">
+					</p:inputText>
+					<p:message for="numero" />
+
+					<h:outputLabel for="data" value="Data" />
+					<p:inputMask id="data"
+						value="#{aditivoMB.aditivo.data}"
+						label="data" mask="99/99/9999">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputMask>
+					<p:message for="data" />
+					
+					<h:outputLabel for="objeto" value="Objeto" />
+					<p:inputMask id="objeto"
+						value="#{aditivoMB.aditivo.objeto}"
+						label="objeto" mask="99/99/9999">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputMask>
+					<p:message for="objeto" />
+
+				</h:panelGrid>
+			</p:panel>
+
+			<h:panelGrid columns="3" id="operacoes" style="margin:2% 25% 1% 25%;">
+				<p:commandButton value="Salvar" type="submit"
+					action="#{aditivoMB.incluir}" update="frmAditivo" ajax="false" />
+			</h:panelGrid>
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>
+
+
+
+
+

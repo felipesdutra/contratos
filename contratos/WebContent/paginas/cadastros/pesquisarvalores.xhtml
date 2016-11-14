@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="../../template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<h:form id="frmPesquisa">
+			<h:panelGrid columns="2" style="width:100%">
+
+				<p:growl id="growl" showDetail="true" />
+				<h:panelGrid id="msg" columns="1"
+					style="width:100%;text-align:center">
+					<h:outputLabel value="#{valoresPesquisaMB.mensagem}" />
+				</h:panelGrid>
+			</h:panelGrid>
+			<p:panel header="Pesquisar Valores Ressarcidos"
+				style="width:550px;margin-left:auto; margin-right:auto;">
+
+				<h:panelGrid columns="3" id="cad">
+
+					<h:outputLabel for="valoresano" value="Ano" />
+					<p:inputMask id="valoresano"
+						value="#{valoresPesquisaMB.valoresano}" label="Ano">
+					</p:inputMask>
+					<p:message for="valoresano" />
+
+				</h:panelGrid>
+
+			</p:panel>
+
+			<h:panelGrid id="operacoes"
+				style="width:100%; height:100%;text-align:center" columns="1">
+				<p:commandButton value="Pesquisar" type="submit"
+					action="#{valoresPesquisaMB.consultar}" update="listagem"
+					ajax="false" />
+			</h:panelGrid>
+
+			<p:dataTable style="width:80%;margin-left:auto; margin-right:auto;"
+				id="listagem" var="s" value="#{valoresPesquisaMB.lista}"
+				emptyMessage="Nenhum registro encontrado.">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Parte Pagadora" />
+					</f:facet>
+					<h:outputText value="#{s.partepag}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Processo" />
+					</f:facet>
+					<h:outputText value="#{s.processo}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Valor" />
+					</f:facet>
+					<h:outputText value="#{s.valor}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Data" />
+					</f:facet>
+					<h:outputText value="#{s.datapag}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Observação" />
+					</f:facet>
+					<h:outputText value="#{s.obs}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+
+
+
+
